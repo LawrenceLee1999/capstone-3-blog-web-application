@@ -1,0 +1,61 @@
+<%- include("partials/header.ejs") %>
+
+<h2>Edit Blog Post</h2>
+<form action="/edit/<%= postIndex %>" method="POST">
+  <div class="mb-3">
+    <label for="author" class="form-label">Author:</label>
+    <input
+      type="text"
+      id="author"
+      name="author"
+      class="form-control"
+      value="<%= post.author %>"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Blog Title:</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      class="form-control"
+      value="<%= post.title %>"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="content" class="form-label">Blog Content:</label>
+    <textarea
+      type="text"
+      id="content"
+      name="content"
+      class="form-control"
+      rows="5"
+    >
+<%= post.content %></textarea
+    >
+  </div>
+  <div class="mb-3">
+    <label for="summary" class="form-label">Summary:</label>
+    <textarea
+      type="text"
+      id="summary"
+      name="summary"
+      class="form-control"
+      rows="3"
+    >
+<%= post.summary %></textarea
+    >
+  </div>
+  <div class="mb-3">
+    <label for="date" class="form-label">Date Published:</label>
+    <input
+      type="date"
+      id="date"
+      name="date"
+      class="form-control"
+      value="<%= post.date %>"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Update Blog</button>
+</form>
+<!-- The press update button to update the blog post -->

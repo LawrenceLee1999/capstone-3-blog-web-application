@@ -1,0 +1,71 @@
+<%- include("partials/header.ejs") %>
+
+<form action="/submit" method="POST">
+  <div class="mb-3">
+    <label for="author" class="form-label">Author:</label>
+    <input type="text" id="author" name="author" class="form-control" />
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Blog Title:</label>
+    <input type="text" id="title" name="title" class="form-control" />
+  </div>
+  <div class="mb-3">
+    <label for="content" class="form-label">Blog Content:</label>
+    <textarea
+      type="text"
+      id="content"
+      name="content"
+      class="form-control"
+      rows="5"
+    ></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="summary" class="form-label">Summary:</label>
+    <textarea
+      type="text"
+      id="summary"
+      name="summary"
+      class="form-control"
+      rows="3"
+    ></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="date" class="form-label">Date Published:</label>
+    <input type="date" id="date" name="date" class="form-control" />
+  </div>
+  <button type="submit" class="btn btn-primary">Create Blog</button>
+</form>
+
+<hr />
+
+<h2>Recent Blogs</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <% if(blogs.length > 0) { %> <% blogs.forEach(function (post, index) { %>
+  <div class="col">
+    <div class="card text-center">
+      <div class="card-header"><%= post.author %></div>
+      <div class="card-body">
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text"><%= post.content %></p>
+        <p class="card-summary"><%= post.summary %></p>
+        <a href="/edit/<%= index %>" role="button" class="btn btn-primary"
+          >Edit</a
+        >
+        <form
+          action="/delete/<%= index %>?_method=DELETE"
+          method="POST"
+          style="display: inline"
+        >
+          <button type="submit" class="btn btn-primary">Delete</button>
+        </form>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary">Published: <%= post.date %></small>
+      </div>
+    </div>
+  </div>
+  <% }) %> <% } else { %>
+  <h2>No blog posts available yet</h2>
+  <% } %>
+</div>
